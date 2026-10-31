@@ -1,0 +1,5 @@
+Flask
+dnspython
+requests
+python-dotenv
+pytest

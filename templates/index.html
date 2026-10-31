@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHISH-X | URL Investigation</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/">
+            <span class="brand-icon">PX</span>
+            <span>PHISH-X<small>THREAT INVESTIGATION</small></span>
+        </a>
+        <span class="status"><span></span> ANALYSIS ENGINE</span>
+    </header>
+
+    <main class="hero">
+        <div class="eyebrow">
+            <span class="eyebrow-line"></span>
+            URL THREAT INTELLIGENCE
+        </div>
+
+        <h1>Every link has a story.<br>
+            <span>Find what's hidden.</span>
+        </h1>
+
+        <p class="subtitle">
+            Investigate suspicious URLs, identify potential threat indicators,
+            and understand the risk before you trust a link.
+        </p>
+
+        <section class="scanner">
+            <div class="scanner-heading">
+                <div>
+                    <span class="section-label">NEW INVESTIGATION</span>
+                    <h2>Analyze a URL</h2>
+                </div>
+                <span class="scan-number">SCAN / 001</span>
+            </div>
+
+            <form action="/analyze" method="POST">
+                <label for="url">Website URL</label>
+                <div class="input-wrap">
+                    <span class="input-prefix">↗</span>
+                    <input
+                        type="text"
+                        id="url"
+                        name="url"
+                        placeholder="https://example.com"
+                        autocomplete="url"
+                        maxlength="2048"
+                        required
+                    >
+                </div>
+                <button type="submit">
+                    <span>Investigate URL</span>
+                    <span aria-hidden="true">→</span>
+                </button>
+                <p class="privacy-note">
+                    ◈ URL structure analysis · No automatic page visit
+                </p>
+            </form>
+        </section>
+
+        <section class="features">
+            <article class="feature">
+                <span class="feature-icon">01</span>
+                <div>
+                    <h3>URL Intelligence</h3>
+                    <p>Inspect domain and URL patterns.</p>
+                </div>
+            </article>
+            <article class="feature">
+                <span class="feature-icon">02</span>
+                <div>
+                    <h3>Risk Assessment</h3>
+                    <p>Understand suspicious indicators.</p>
+                </div>
+            </article>
+            <article class="feature">
+                <span class="feature-icon">03</span>
+                <div>
+                    <h3>Threat Analysis</h3>
+                    <p>More intelligence modules coming next.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <span>PHISH-X <span class="footer-divider">/</span> CYBERSECURITY LAB</span>
+        <span>ANALYZE. UNDERSTAND. PROTECT.</span>
+    </footer>
+</body>
+</html>

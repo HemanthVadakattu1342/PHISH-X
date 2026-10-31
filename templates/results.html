@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHISH-X | Investigation Results</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .result-card {
+            margin-top: 22px;
+            padding: 20px;
+            background: #0b1020;
+            border: 1px solid #293653;
+            border-radius: 12px;
+        }
+        .score {
+            font-size: 38px;
+            font-weight: bold;
+            color: #55d6be;
+        }
+        .risk {
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .indicator {
+            margin: 12px 0;
+            padding: 14px;
+            border-left: 3px solid #55d6be;
+            background: #151d33;
+            border-radius: 5px;
+        }
+        .points {
+            color: #55d6be;
+            font-weight: bold;
+        }
+        .muted {
+            color: #b5c1d8;
+            overflow-wrap: anywhere;
+        }
+        .back {
+            display: inline-block;
+            margin-top: 22px;
+            color: #55d6be;
+        }
+        .error {
+            color: #ff8c8c;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <p class="eyebrow">PHISH-X / ANALYSIS REPORT</p>
+        <h1>Investigation <span>Results</span></h1>
+
+        {% if error %}
+            <div class="result-card">
+                <h2 class="error">Unable to analyze URL</h2>
+                <p>{{ error }}</p>
+                <p class="muted">{{ submitted_url }}</p>
+            </div>
+        {% else %}
+            <div class="result-card">
+                <p class="muted">Submitted URL</p>
+                <p>{{ result.submitted_url }}</p>
+
+                <p class="muted">Hostname</p>
+                <p>{{ result.hostname }}</p>
+
+                <p class="muted">Risk score</p>
+                <div class="score">
+                    {{ result.risk_score }}<span style="font-size:18px">/100</span>
+                </div>
+
+                <p class="risk">
+                    Risk level: {{ result.risk_level }}
+                </p>
+
+                <p class="muted">
+                    {{ result.indicator_count }} indicator(s) identified
+                </p>
+            </div>
+
+            <h2>Investigation Findings</h2>
+
+            {% if result.indicators %}
+                {% for item in result.indicators %}
+                    <div class="indicator">
+                        <strong>{{ item.name }}</strong>
+                        <span class="points">+{{ item.points }}</span>
+                        <p class="muted">{{ item.explanation }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="result-card">
+                    No suspicious URL characteristics were detected by
+                    the current rules.
+                </div>
+            {% endif %}
+
+            <div class="result-card">
+                <h3>Analyst Note</h3>
+                <p class="muted">{{ result.message }}</p>
+            </div>
+        {% endif %}
+
+        <a class="back" href="/">← Investigate another URL</a>
+    </main>
+</body>
+</html>
